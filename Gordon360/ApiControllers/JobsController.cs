@@ -69,7 +69,7 @@ namespace Gordon360.ApiControllers
         /// Get a user's saved shifts
         /// </summary>
         /// <param name="userID">The user's Gordon ID</param>
-        /// <returns>The user's active jobs</returns>
+        /// <returns>The user's saved shifts</returns>
         [HttpGet]
         [Route("getSavedShifts/{userID}")]
         public IHttpActionResult getSavedShiftsForUser(string userID)
@@ -89,10 +89,9 @@ namespace Gordon360.ApiControllers
         }
 
         /// <summary>
-        /// Get a user's active jobs
+        /// Saves a shift
         /// </summary>
-        /// <param name="shiftDetails"></param>
-        /// <returns>The user's active jobs</returns>
+        /// <returns>The result of saving a shift</returns>
         [HttpPost]
         [Route("saveShift")]
         [StateYourBusiness(operation = Operation.ADD, resource = Resource.SHIFT)]
@@ -113,7 +112,7 @@ namespace Gordon360.ApiControllers
         }
 
         /// <summary>
-        /// Get a user's active jobs
+        /// Delete a shift
         /// </summary>
         /// <returns>The result of deleting the shift</returns>
         [HttpDelete]
@@ -142,7 +141,7 @@ namespace Gordon360.ApiControllers
         /// <summary>
         /// Submit shifts
         /// </summary>
-        /// <returns>The result of deleting the shift</returns>
+        /// <returns>The result of submitting the shift</returns>
         [HttpPost]
         [Route("submitShifts")]
         [StateYourBusiness(operation = Operation.UPDATE, resource = Resource.SHIFT)]
@@ -169,7 +168,8 @@ namespace Gordon360.ApiControllers
         /// <summary>
         /// Submit shifts
         /// </summary>
-        /// <returns>The result of deleting the shift</returns>
+        /// <param name="supervisorID">The supervisor's Gordon ID</param>
+        /// <returns>The names of the direct and reporting supervisors</returns>
         [HttpGet]
         [Route("supervisorName/{supervisorID}")]
         [StateYourBusiness(operation = Operation.UPDATE, resource = Resource.SHIFT)]
@@ -191,6 +191,7 @@ namespace Gordon360.ApiControllers
 
         /// <summary>
         /// Check for shift overlapping with entered time
+        /// <returns>1 if the shift overlaps</returns>
         /// </summary>
         [HttpPost]
         [Route("overlapShiftCheck")]
